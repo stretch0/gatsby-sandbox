@@ -5,6 +5,13 @@
 3) run the following query:
 ```graphql
 query MyQuery {
+  item {
+		featuredImg {
+			childImageSharp {
+				gatsbyImageData
+      }
+    }
+  }
   product {
     id
     featuredImg {
@@ -13,7 +20,6 @@ query MyQuery {
       }
     }
     items {
-      test
       id
       featuredImg {
         childImageSharp {
@@ -24,5 +30,6 @@ query MyQuery {
   }
 }
 
+
 ```
-4) Notice `imageData` is returning null when it should return an optimised version of the remote image from unsplash
+4) Notice `product.items[i].featuredImage` is null. This should return the same image data that is returned on `item.featuredImg`.
