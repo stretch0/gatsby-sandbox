@@ -3,21 +3,23 @@
 const { createRemoteFileNode } = require(`gatsby-source-filesystem`);
 
 const onCreateNode = async ({ node, cache, store, getCache, actions: { createNode, createNodeField }, createNodeId }) => {  
-
-  if( node.internal.type === 'myNode') {
+  
+  if( node.internal.type === 'Item') {
     
-    // const myNode = await createRemoteFileNode({
-    //   url: node.imageUrl,
-    //   parentNodeId: node.id,
-    //   createNode,
-    //   createNodeId,
-    //   cache,
-    //   store,
-    // });
+    const fileNode = await createRemoteFileNode({
+      url: node.imageUrl,
+      parentNodeId: node.parent,
+      createNode,
+      createNodeId,
+      getCache,
+    })
 
-    // if (myNode) {
-    //   myNode.imageData___NODE = myNode.id;
-    // }
+    if (fileNode) {
+      createNodeField({ node, name: "localFile", value: fileNode.id })
+    }
+  }
+  
+  if( node.internal.type === 'Product') {
     
     const fileNode = await createRemoteFileNode({
       url: node.imageUrl,
@@ -28,7 +30,7 @@ const onCreateNode = async ({ node, cache, store, getCache, actions: { createNod
     })
 
     if (fileNode) {
-      createNodeField({ node, name: "imageData", value: fileNode.id })
+      createNodeField({ node, name: "localFile", value: fileNode.id })
     }
   }
 };
