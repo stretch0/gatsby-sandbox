@@ -10,7 +10,7 @@ query MyQuery {
       childImageSharp {
         gatsbyImageData
       }
-  	}
+    }
   }
   product {
     id
