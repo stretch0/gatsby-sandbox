@@ -7,9 +7,10 @@
 query MyQuery {
   item {
     featuredImg {
-        childImageSharp {
-      gatsbyImageData
-    }
+      childImageSharp {
+        gatsbyImageData
+      }
+  	}
   }
   product {
     id
